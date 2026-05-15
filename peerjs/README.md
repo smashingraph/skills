@@ -14,11 +14,11 @@ The agent MUST select the appropriate skill file based on the specific feature r
 ```text
 skills/peerjs/
 ├── README.md                   # This structural index and router
-├── peerjs-core.md              # 1:1 text/JSON direct connection setup
-├── peerjs-media.md             # Audio/Video camera streams and toggles
-├── peerjs-multipeer.md         # Multi-user full-mesh topology limits
-├── peerjs-binary-transfer.md   # Safe chunked file/blob data sharing
-└── peerjs-security-prod.md     # Production ICE/TURN & error recovery
+├── peerjs-core                 # 1:1 text/JSON direct connection setup
+├── peerjs-media                # Audio/Video camera streams and toggles
+├── peerjs-multipeer            # Multi-user full-mesh topology limits
+├── peerjs-binary-transfer      # Safe chunked file/blob data sharing
+└── peerjs-security-prod        # Production ICE/TURN & error recovery
 ```
 
 ### Quick Routing Triggers
@@ -26,19 +26,19 @@ skills/peerjs/
 
 | Request / Action Needed | Target Skill File |
 | :--- | :--- |
-| Initialize nodes, open direct data streams, send simple strings/JSON | `peerjs-core.md` |
-| Handle camera permissions, render remote streams, create video chats | `peerjs-media.md` |
-| Setup chat rooms, group calls, manage multi-peer networks (< 5 peers) | `peerjs-multipeer.md` |
-| Send large images, binary files, or raw Blobs without dropping links | `peerjs-binary-transfer.md` |
-| Deploy to production, setup STUN/TURN, handle timeouts, fix firewalls | `peerjs-security-prod.md` |
+| Initialize nodes, open direct data streams, send simple strings/JSON | `peerjs-core/SKILL.md` |
+| Handle camera permissions, render remote streams, create video chats | `peerjs-media/SKILL.md` |
+| Setup chat rooms, group calls, manage multi-peer networks (< 5 peers) | `peerjs-multipeer/SKILL.md` |
+| Send large images, binary files, or raw Blobs without dropping links | `peerjs-binary-transfer/SKILL.md` |
+| Deploy to production, setup STUN/TURN, handle timeouts, fix firewalls | `peerjs-security-prod/SKILL.md` |
 
 ## Global Guardrails for the Agent
 
 When writing or modification operations are requested inside this repository, the agent MUST obey these macro rules:
 
-1. **Topology Ceiling**: Never attempt to build architectures with more than 5 video streams using PeerJS. Trigger `peerjs-multipeer.md` to issue an SFU/MCU architectural warning if the target exceeds this limit.
+1. **Topology Ceiling**: Never attempt to build architectures with more than 5 video streams using PeerJS. Trigger `peerjs-multipeer/SKILL.md` to issue an SFU/MCU architectural warning if the target exceeds this limit.
 2. **Memory Leak Prevention**: Every opened connection (`peer.connect` or `peer.on('connection')`) must have explicit error catches and state cleanup on close events.
-3. **Environment Isolation**: Never mix development cloud options with production environments. Enforce environmental variable injection for ports, paths, and ICE keys as specified in `peerjs-security-prod.md`.
+3. **Environment Isolation**: Never mix development cloud options with production environments. Enforce environmental variable injection for ports, paths, and ICE keys as specified in `peerjs-security-prod/SKILL.md`.
 
 ## AI Integration Instructions
 
